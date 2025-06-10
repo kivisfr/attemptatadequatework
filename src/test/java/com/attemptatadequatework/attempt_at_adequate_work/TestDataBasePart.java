@@ -40,7 +40,7 @@ class TestDataBasePart {
 
     @Test
     void testtable_view() throws SQLException {
-        DataBasePart.table_view("test_table");
+        DataBasePart.table_view("SELECT * FROM trying.test_table");
     }
 
     @AfterClass
