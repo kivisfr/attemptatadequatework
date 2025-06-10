@@ -13,8 +13,6 @@ import java.sql.*;
     Класс, предназначенный для работы с базой данной (MySQL).
 
     Методы:
-            connect() — выполняет подключение к базе данных,
-                        иницилизациях соответствующих полей.
             table_view(tableName) — создаёт таблицу TableView через javafx.
                         принимает String tableName — название таблицы для отображения.
  */
@@ -32,24 +30,13 @@ public class DataBasePart {
     public static TableView tableView;
 
     /*
-        Подключение к базе данных.
-     */
-    public static void connect(){
-        try {
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            statement = connection.createStatement();
-        } catch (SQLException e){
-                e.printStackTrace();
-        }
-    }
-
-    /*
         Динамическое создание таблицы с базы данных в отображаемую через javafx таблицу.
      */
     public static void table_view(String tableName) throws SQLException {
 
         try {
-            connect();
+            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            statement = connection.createStatement();
             resultSet = statement.executeQuery(tableName);
             tableView = new TableView();
             table = FXCollections.observableArrayList();
