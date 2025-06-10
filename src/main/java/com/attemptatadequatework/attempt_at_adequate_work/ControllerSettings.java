@@ -54,7 +54,7 @@ public class ControllerSettings {
                    break;
             }
 
-            textArea.setText("Selected table " + tableName + " .");
+            textArea.setText("Selected table is " + tableName + ".");
             DataBasePart.table_view(tableName);
 
             TableView tableView = DataBasePart.tableView;

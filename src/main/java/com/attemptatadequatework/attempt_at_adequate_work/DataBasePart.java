@@ -34,10 +34,11 @@ public class DataBasePart {
      */
     public static void table_view(String tableName) throws SQLException {
 
+        String sqlCommand = "SELECT * FROM trying." + tableName;
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(tableName);
+            resultSet = statement.executeQuery(sqlCommand);
             tableView = new TableView();
             table = FXCollections.observableArrayList();
 
