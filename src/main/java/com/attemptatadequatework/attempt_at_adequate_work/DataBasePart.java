@@ -4,6 +4,10 @@ package com.attemptatadequatework.attempt_at_adequate_work;
     /*
         Класс, предназначенный для работы с базой данной (MySQL).
 
+        Методы:
+                connect() — выполняет подключение к базе данных,
+                            иницилизациях соответствующих полей.
+                .
      */
 
 import javafx.collections.ObservableList;
@@ -26,12 +30,12 @@ public class DataBasePart {
     public static TableView tableView;
 
     /*
-
+        Подключение к базе данных.
      */
     public static void connect(){
         try {
 
-        } catch (){
+        } catch (Exception e){
 
         }
     }
