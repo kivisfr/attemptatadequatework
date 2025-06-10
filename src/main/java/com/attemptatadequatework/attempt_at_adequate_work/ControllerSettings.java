@@ -11,21 +11,14 @@ import javafx.scene.control.Button;
 public class ControllerSettings {
 
     @FXML
-    private Button activatedButtonOne;
+    private Button  activatedButtonOne, activatedButtonTwo,
+                    activatedButtonThree, activatedButtonFour,
+                    activatedButtonFive;
 
     @FXML
-    private Button activatedButtonTwo;
+    protected void onButtonClick(String tableName) {
 
-    @FXML
-    private Button activatedButtonThree;
-
-    @FXML
-    private Button activatedButtonFour;
-
-    @FXML
-    private Button activatedButtonFive;
-
-
+    }
 
 
 }
