@@ -4,6 +4,7 @@ module com.attemptatadequatework.attempt_at_adequate_work {
 
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.attemptatadequatework.attempt_at_adequate_work to javafx.fxml;
     exports com.attemptatadequatework.attempt_at_adequate_work;
