@@ -36,10 +36,7 @@ public class ControllerSettings {
     @FXML
     protected void onButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
-        textArea.setText("Selected table " + "test_table" + " .");
-
         try {
-
             switch (clickedButton.getText()) {
                 case "users":
                     tableName = "users";
@@ -57,7 +54,8 @@ public class ControllerSettings {
                    break;
             }
 
-            DataBasePart.table_view("test_table");
+            textArea.setText("Selected table " + tableName + " .");
+            DataBasePart.table_view(tableName);
 
             TableView tableView = DataBasePart.tableView;
 
@@ -65,7 +63,7 @@ public class ControllerSettings {
             StandardHBox.getChildren().set(tableIndex, tableView);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+                throw new RuntimeException(e);
         }
     }
 
