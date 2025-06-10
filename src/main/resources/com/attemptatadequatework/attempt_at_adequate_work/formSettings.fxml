@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+
+   <children>
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="243.0" prefWidth="389.0">
+
+
+         <children>
+            <VBox prefHeight="262.0" prefWidth="108.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" text="users">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="transactions">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="books">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="book_information">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </VBox>
+         </children></HBox>
+      <TableView prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
