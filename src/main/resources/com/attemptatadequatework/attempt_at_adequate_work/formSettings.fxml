@@ -4,46 +4,55 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
-      <HBox layoutX="14.0" layoutY="14.0" prefHeight="243.0" prefWidth="389.0">
+      <TextField layoutX="176.0" layoutY="14.0" />
+      <ComboBox layoutX="336.0" layoutY="14.0" prefWidth="150.0" />
+      <Button layoutX="113.0" layoutY="14.0" mnemonicParsing="false" text="add" />
+      <HBox layoutX="10.0" layoutY="56.0" prefHeight="230.0" prefWidth="480.0">
 
 
          <children>
-            <VBox prefHeight="262.0" prefWidth="108.0">
+            <VBox alignment="CENTER" prefHeight="262.0" prefWidth="108.0" style="-fx-padding: 2; -fx-spacing: 20;">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" text="users">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="users">
                      <opaqueInsets>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </opaqueInsets>
                   </Button>
 
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="transactions">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="transactions">
                      <opaqueInsets>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </opaqueInsets>
                   </Button>
 
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="books">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="books">
                      <opaqueInsets>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </opaqueInsets>
                   </Button>
 
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="book_information">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="book_information">
                      <opaqueInsets>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </opaqueInsets>
                   </Button>
                </children>
             </VBox>
+            <TableView prefHeight="230.0" prefWidth="400.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
          </children></HBox>
-      <TableView prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
    </children>
+   <opaqueInsets>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
 </Pane>
