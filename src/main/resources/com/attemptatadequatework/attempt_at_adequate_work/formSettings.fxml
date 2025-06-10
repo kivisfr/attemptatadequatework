@@ -41,12 +41,7 @@
                   </Button>
                </children>
             </VBox>
-            <TableView prefHeight="230.0" prefWidth="400.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
+            <TableView prefHeight="230.0" prefWidth="400.0" />
          </children></HBox>
    </children>
    <opaqueInsets>

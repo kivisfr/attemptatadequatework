@@ -1,21 +1,23 @@
 package com.attemptatadequatework.attempt_at_adequate_work;
 
-
-    /*
-        Класс, предназначенный для работы с базой данной (MySQL).
-
-        Методы:
-                connect() — выполняет подключение к базе данных,
-                            иницилизациях соответствующих полей.
-                .
-     */
-
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.Callback;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+/*
+    Класс, предназначенный для работы с базой данной (MySQL).
+
+    Методы:
+            connect() — выполняет подключение к базе данных,
+                        иницилизациях соответствующих полей.
+            table_view(tableName) — создаёт таблицу TableView через javafx.
+                        принимает String tableName — название таблицы для отображения.
+ */
 
 public class DataBasePart {
 
@@ -34,9 +36,53 @@ public class DataBasePart {
      */
     public static void connect(){
         try {
+            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            statement = connection.createStatement();
+        } catch (SQLException e){
+                e.printStackTrace();
+        }
+    }
 
-        } catch (Exception e){
+    /*
+        Динамическое создание таблицы с базы данных в отображаемую через javafx таблицу.
+     */
+    public static void table_view(String tableName) throws SQLException {
 
+        try {
+            connect();
+            resultSet = statement.executeQuery(tableName);
+            tableView = new TableView();
+            table = FXCollections.observableArrayList();
+
+            for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
+                //We are using non property style for making dynamic table
+                final int j = i;
+                TableColumn col = new TableColumn(resultSet.getMetaData().getColumnName(i + 1));
+                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                        Object value = param.getValue().get(j);
+                        return new SimpleStringProperty(value == null ? "" : value.toString());
+                    }
+                });
+
+                tableView.getColumns().addAll(col);
+            }
+
+            while (resultSet.next()) {
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    //Iterate Column
+                    row.add(resultSet.getString(i));
+                }
+                table.add(row);
+
+            }
+
+            tableView.setItems(table);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error on building table.");
         }
     }
 }
