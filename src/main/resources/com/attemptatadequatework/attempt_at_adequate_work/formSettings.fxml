@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane
+        maxHeight="-Infinity" maxWidth="-Infinity"
+        minHeight="-Infinity" minWidth="-Infinity"
+        prefHeight="300.0" prefWidth="500.0"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.attemptatadequatework.attempt_at_adequate_work.ControllerSettings">
+
+   <children>
+      <TextField layoutX="167.0" layoutY="14.0" />
+      <ComboBox layoutX="336.0" layoutY="14.0" prefWidth="150.0" />
+      <Button layoutX="113.0" layoutY="14.0" mnemonicParsing="false" text="add" />
+      <HBox layoutX="10.0" layoutY="56.0" prefHeight="230.0" prefWidth="480.0" fx:id="StandardHBox">
+
+
+         <children>
+            <VBox alignment="CENTER"
+                  prefHeight="262.0" prefWidth="108.0"
+                  style="-fx-padding: 2; -fx-spacing: 20;">
+
+
+               <children>
+                  <Button alignment="CENTER"
+                          contentDisplay="CENTER"
+                          layoutX="25.0" layoutY="25.0"
+                          mnemonicParsing="false"
+                          prefHeight="25.0" prefWidth="100.0"
+                          fx:id="buttonOne"
+                          onAction="#onButtonClick"
+                          text="users">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+
+                  <Button alignment="CENTER"
+                          contentDisplay="CENTER"
+                          mnemonicParsing="false"
+                          prefHeight="25.0" prefWidth="100.0"
+                          fx:id="buttonTwo"
+                          onAction="#onButtonClick"
+                          text="transactions">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+
+                  <Button alignment="CENTER"
+                          contentDisplay="CENTER"
+                          mnemonicParsing="false"
+                          prefHeight="25.0" prefWidth="100.0"
+                          fx:id="buttonThree"
+                          onAction="#onButtonClick"
+                          text="books">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+
+                  <Button alignment="CENTER"
+                          contentDisplay="CENTER"
+                          mnemonicParsing="false"
+                          prefHeight="25.0" prefWidth="100.0"
+                          fx:id="buttonFour"
+                          onAction="#onButtonClick"
+                          text="book_information">
+                     <opaqueInsets>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </VBox>
+
+            <TableView prefHeight="230.0" prefWidth="400.0"
+                        fx:id="StandardTable"/>
+
+         </children>
+      </HBox>
+
+      <TextArea layoutX="7.0" layoutY="8.0"
+                prefHeight="54.0" prefWidth="94.0"
+                fx:id="textArea"
+      />
+   </children>
+   <opaqueInsets>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
+
+</Pane>
