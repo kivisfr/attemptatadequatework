@@ -29,7 +29,8 @@ public class DataBasePart {
     public static Connection connection;
     public static Statement statement;
     public static ResultSet resultSet;
-    public static ObservableList<ObservableList> table;
+    public static ObservableList<ObservableList> table =
+            FXCollections.observableArrayList();
     public static TableView tableView;
     public static ObservableList<String> tableColumnsNames =
             FXCollections.observableArrayList();
@@ -44,7 +45,6 @@ public class DataBasePart {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sqlCommand);
             tableView = new TableView();
-            table = FXCollections.observableArrayList();
 
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
                 //We are using non property style for making dynamic table
@@ -75,9 +75,6 @@ public class DataBasePart {
                 }
                 table.add(row);
             }
-
-
-
 
             tableView.setItems(table);
         } catch (Exception e) {

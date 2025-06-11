@@ -40,6 +40,10 @@ public class ControllerSettings {
                 При помощи отображаемого текста на кнопке определяется, какая именно была нажата.
               */
             Button clickedButton = (Button) event.getSource();
+             //     Очищение всех элементов ComboBox & StandardTable перед последующим заполнением.
+             comboBoxColumns.getItems().clear();
+             StandardTable.getItems().clear();
+
             switch (clickedButton.getText()) {
                 case "users":
                     tableName = "users";
@@ -69,7 +73,14 @@ public class ControllerSettings {
 
             comboBoxColumns.setItems(DataBasePart.tableColumnsNames);
 
-            TableView tableView = DataBasePart.tableView;
+             // StandardTable.setItems(DataBasePart.tableView.getItems());
+
+             // StandardTable.itemsProperty().bind(DataBasePart.tableView.itemsProperty());
+
+             StandardTable.setItems(DataBasePart.table);
+
+             TableView tableView = DataBasePart.tableView;
+             //StandardTable = tableView;
 
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
             StandardHBox.getChildren().set(tableIndex, tableView);
