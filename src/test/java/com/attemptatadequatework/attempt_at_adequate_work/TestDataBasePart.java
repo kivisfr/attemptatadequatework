@@ -39,7 +39,6 @@ class TestDataBasePart {
 
     @Test
     void testtable_view() throws SQLException {
-        comboBoxColumns = new ComboBox<String >();
         DataBasePart.table_view("SELECT * FROM trying.test_table");
     }
 

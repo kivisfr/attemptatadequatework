@@ -15,12 +15,15 @@
 
    <children>
       <TextField layoutX="167.0" layoutY="14.0" />
+
       <ComboBox layoutX="336.0" layoutY="14.0"
                 prefWidth="150.0"
                 fx:id="comboBoxColumns"/>
+
       <Button layoutX="113.0" layoutY="14.0"
               mnemonicParsing="false" text="add"
                fx:id="addButton" />
+
       <HBox layoutX="10.0" layoutY="56.0"
             prefHeight="230.0" prefWidth="480.0"
             fx:id="StandardHBox">

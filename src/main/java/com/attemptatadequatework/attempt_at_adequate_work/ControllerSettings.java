@@ -18,7 +18,7 @@ public class ControllerSettings {
     private static String tableName;
 
     @FXML
-    public static ComboBox<String> comboBoxColumns;
+    public ComboBox<String> comboBoxColumns;
 
     @FXML
     public TextArea textArea;
@@ -67,15 +67,37 @@ public class ControllerSettings {
             textArea.setText("Selected table is " + tableName + ".");
             DataBasePart.table_view(tableName);
 
+            comboBoxColumns.setItems(DataBasePart.tableColumnsNames);
+
             TableView tableView = DataBasePart.tableView;
 
+             System.out.println("Children: " + mainPane.getChildren());
+
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
+            System.out.println(StandardTable);
+            System.out.println(tableIndex);
             StandardHBox.getChildren().set(tableIndex, tableView);
 
-             int comboBoxIndex = mainPane.getChildren().indexOf(comboBoxColumns);
+             int comboBoxIndex = mainPane.getChildrenUnmodifiable().indexOf(comboBoxColumns);
+             System.out.println(comboBoxColumns);
+             System.out.println(comboBoxIndex);
+             System.out.println(comboBoxColumns.getItems());
+
+             int index = -1;
+             for (int i = 0; i < mainPane.getChildren().size(); i++) {
+                 if (mainPane.getChildren().get(i) == comboBoxColumns) {
+                     index = i;
+                     break;
+                 }
+             }
+             System.out.println("Ручной индекс: " + index);
+
              mainPane.getChildren().set(comboBoxIndex, comboBoxColumns);
 
+
+
         } catch (SQLException e) {
+             System.out.println("Error on Controller code part.");
                 throw new RuntimeException(e);
         }
     }

@@ -8,6 +8,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 
 /*
@@ -29,7 +31,8 @@ public class DataBasePart {
     public static ResultSet resultSet;
     public static ObservableList<ObservableList> table;
     public static TableView tableView;
-
+    public static ObservableList<String> tableColumnsNames =
+            FXCollections.observableArrayList();
     /*
         Динамическое создание таблицы с базы данных в отображаемую через javafx таблицу.
      */
@@ -42,7 +45,6 @@ public class DataBasePart {
             resultSet = statement.executeQuery(sqlCommand);
             tableView = new TableView();
             table = FXCollections.observableArrayList();
-            ObservableList<String> tableColumnsNames = FXCollections.observableArrayList();
 
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
                 //We are using non property style for making dynamic table
@@ -58,26 +60,31 @@ public class DataBasePart {
                 tableView.getColumns().addAll(col);
             }
 
-            while (resultSet.next()) {
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++){
+                if (tableColumnsNames.size() <= resultSet.getMetaData().getColumnCount()){
+                    tableColumnsNames.add(resultSet.getMetaData().getColumnName(i));
+                }
+            }
+
+             while (resultSet.next()) {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
                     //Iterate Column
                     row.add(resultSet.getString(i));
-
-                    if( tableColumnsNames.size() <= resultSet.getMetaData().getColumnCount()){
-                        tableColumnsNames.add(resultSet.getString(i));
-                    }
                 }
                 table.add(row);
             }
 
-            ControllerSettings.comboBoxColumns = new ComboBox<>(tableColumnsNames);
+
+
 
             tableView.setItems(table);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on building table.");
+            Throwable cause = e.getCause();
+            System.err.println(cause.getMessage());
         }
     }
 }
