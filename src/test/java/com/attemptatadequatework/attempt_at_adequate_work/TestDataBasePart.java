@@ -1,15 +1,11 @@
 package com.attemptatadequatework.attempt_at_adequate_work;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
-import javafx.util.Callback;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
@@ -37,6 +33,9 @@ class TestDataBasePart {
             statement.executeUpdate("INSERT INTO test_table VALUES (1, 'Test')");
             connection.close();
     }
+
+    @FXML
+    public ComboBox<String> comboBoxColumns;
 
     @Test
     void testtable_view() throws SQLException {

@@ -4,9 +4,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 
 /*
@@ -26,9 +29,11 @@ public class DataBasePart {
     public static Connection connection;
     public static Statement statement;
     public static ResultSet resultSet;
-    public static ObservableList<ObservableList> table;
+    public static ObservableList<ObservableList> table =
+            FXCollections.observableArrayList();
     public static TableView tableView;
-
+    public static ObservableList<String> tableColumnsNames =
+            FXCollections.observableArrayList();
     /*
         Динамическое создание таблицы с базы данных в отображаемую через javafx таблицу.
      */
@@ -40,7 +45,6 @@ public class DataBasePart {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sqlCommand);
             tableView = new TableView();
-            table = FXCollections.observableArrayList();
 
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
                 //We are using non property style for making dynamic table
@@ -56,7 +60,13 @@ public class DataBasePart {
                 tableView.getColumns().addAll(col);
             }
 
-            while (resultSet.next()) {
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++){
+                if (tableColumnsNames.size() <= resultSet.getMetaData().getColumnCount()){
+                    tableColumnsNames.add(resultSet.getMetaData().getColumnName(i));
+                }
+            }
+
+             while (resultSet.next()) {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
@@ -64,13 +74,14 @@ public class DataBasePart {
                     row.add(resultSet.getString(i));
                 }
                 table.add(row);
-
             }
 
             tableView.setItems(table);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on building table.");
+            Throwable cause = e.getCause();
+            System.err.println(cause.getMessage());
         }
     }
 }
