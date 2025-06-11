@@ -71,30 +71,11 @@ public class ControllerSettings {
 
             TableView tableView = DataBasePart.tableView;
 
-             System.out.println("Children: " + mainPane.getChildren());
-
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
-            System.out.println(StandardTable);
-            System.out.println(tableIndex);
             StandardHBox.getChildren().set(tableIndex, tableView);
 
-             int comboBoxIndex = mainPane.getChildrenUnmodifiable().indexOf(comboBoxColumns);
-             System.out.println(comboBoxColumns);
-             System.out.println(comboBoxIndex);
-             System.out.println(comboBoxColumns.getItems());
-
-             int index = -1;
-             for (int i = 0; i < mainPane.getChildren().size(); i++) {
-                 if (mainPane.getChildren().get(i) == comboBoxColumns) {
-                     index = i;
-                     break;
-                 }
-             }
-             System.out.println("Ручной индекс: " + index);
-
-             mainPane.getChildren().set(comboBoxIndex, comboBoxColumns);
-
-
+            int comboBoxIndex = mainPane.getChildrenUnmodifiable().indexOf(comboBoxColumns);
+            mainPane.getChildren().set(comboBoxIndex, comboBoxColumns);
 
         } catch (SQLException e) {
              System.out.println("Error on Controller code part.");

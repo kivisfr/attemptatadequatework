@@ -69,9 +69,9 @@ class TestControllerSettings {
 
     @Test
     void testonButtonClick() {
-        textArea.setText("Selected table " + "test_table" + " .");
-
         try {
+            teststart();
+
             DataBasePart.table_view("test_table");
 
             TableView tableView = DataBasePart.tableView;
@@ -79,7 +79,12 @@ class TestControllerSettings {
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
             StandardHBox.getChildren().set(tableIndex, tableView);
 
+            tearDownDatabase();
         } catch (SQLException e) {
+            System.out.println("Error with SQL on Controller code part.");
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            System.out.println("Error with IO on Controller code part.");
             throw new RuntimeException(e);
         }
     }
