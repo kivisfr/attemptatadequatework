@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -15,6 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestControllerSettings {
 
@@ -69,9 +70,9 @@ class TestControllerSettings {
 
     @Test
     void testonButtonClick() {
-        try {
-            teststart();
+        textArea.setText("Selected table " + "test_table" + " .");
 
+        try {
             DataBasePart.table_view("test_table");
 
             TableView tableView = DataBasePart.tableView;
@@ -79,12 +80,7 @@ class TestControllerSettings {
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
             StandardHBox.getChildren().set(tableIndex, tableView);
 
-            tearDownDatabase();
         } catch (SQLException e) {
-            System.out.println("Error with SQL on Controller code part.");
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            System.out.println("Error with IO on Controller code part.");
             throw new RuntimeException(e);
         }
     }
@@ -97,10 +93,5 @@ class TestControllerSettings {
 
         statement.executeUpdate("DELETE TABLE test_table");
         connection.close();
-    }
-
-    @Test
-    void onAddButtonClicked() {
-
     }
 }
