@@ -10,13 +10,20 @@
         prefHeight="300.0" prefWidth="500.0"
         xmlns="http://javafx.com/javafx/17.0.12"
         xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.attemptatadequatework.attempt_at_adequate_work.ControllerSettings">
+        fx:controller="com.attemptatadequatework.attempt_at_adequate_work.ControllerSettings"
+        fx:id="mainPane">
 
    <children>
       <TextField layoutX="167.0" layoutY="14.0" />
-      <ComboBox layoutX="336.0" layoutY="14.0" prefWidth="150.0" />
-      <Button layoutX="113.0" layoutY="14.0" mnemonicParsing="false" text="add" />
-      <HBox layoutX="10.0" layoutY="56.0" prefHeight="230.0" prefWidth="480.0" fx:id="StandardHBox">
+      <ComboBox layoutX="336.0" layoutY="14.0"
+                prefWidth="150.0"
+                fx:id="comboBoxColumns"/>
+      <Button layoutX="113.0" layoutY="14.0"
+              mnemonicParsing="false" text="add"
+               fx:id="addButton" />
+      <HBox layoutX="10.0" layoutY="56.0"
+            prefHeight="230.0" prefWidth="480.0"
+            fx:id="StandardHBox">
 
 
          <children>

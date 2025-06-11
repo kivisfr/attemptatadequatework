@@ -7,12 +7,9 @@ package com.attemptatadequatework.attempt_at_adequate_work;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 import java.sql.SQLException;
 
@@ -21,10 +18,13 @@ public class ControllerSettings {
     private static String tableName;
 
     @FXML
-    private Button  activatedTableButton, activatedButtonTwo;
+    public static ComboBox<String> comboBoxColumns;
 
     @FXML
     public TextArea textArea;
+
+    @FXML
+    public Pane mainPane;
 
     @FXML
     private HBox StandardHBox;
@@ -35,8 +35,11 @@ public class ControllerSettings {
 
     @FXML
     protected void onButtonClick(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        try {
+         try {
+             /*
+                При помощи отображаемого текста на кнопке определяется, какая именно была нажата.
+              */
+            Button clickedButton = (Button) event.getSource();
             switch (clickedButton.getText()) {
                 case "users":
                     tableName = "users";
@@ -50,6 +53,13 @@ public class ControllerSettings {
                 case "book_information":
                     tableName = "book_information";
                     break;
+                case "add":
+                    try{
+
+                    } catch (Exception e){
+
+                    }
+                    break;
                 default:
                    break;
             }
@@ -62,10 +72,15 @@ public class ControllerSettings {
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
             StandardHBox.getChildren().set(tableIndex, tableView);
 
+             int comboBoxIndex = mainPane.getChildren().indexOf(comboBoxColumns);
+             mainPane.getChildren().set(comboBoxIndex, comboBoxColumns);
+
         } catch (SQLException e) {
                 throw new RuntimeException(e);
         }
     }
 
+    protected static void onAddButtonClicked(){
 
+    }
 }
