@@ -11,6 +11,8 @@ import javafx.util.Callback;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /*
     Класс, предназначенный для работы с базой данной (MySQL).
@@ -36,6 +38,7 @@ public class DataBasePart {
     public static TableView tableView;
     public static ObservableList<String> tableColumnsNames =
             FXCollections.observableArrayList();
+    public static ArrayList  tableColumnsName;
 
     /*
         Подключение к таблице tableName.
