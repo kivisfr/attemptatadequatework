@@ -46,6 +46,15 @@ public class DataBasePart {
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sqlCommand);
     }
+
+    /*
+        Выполняет одну операцию sqlCommand с таблицей tableName.
+     */
+    public static void workWithTable(String sqlCommand, String tableName) throws SQLException {
+        setConnection(tableName);
+        statement.executeUpdate(sqlCommand);
+    }
+
     /*
         Динамическое создание таблицы с базы данных в отображаемую через javafx таблицу.
      */

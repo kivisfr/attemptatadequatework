@@ -5,6 +5,7 @@ package com.attemptatadequatework.attempt_at_adequate_work;
         Класс, предназначенный для настройки элементов пользовательского интерфейса.
      */
 
+import com.sun.source.tree.IfTree;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,12 +14,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ControllerSettings {
 
     private static String tableName;
-    public ObservableList tableColumnsName;
+    public static ArrayList<String> tableColumnsName;
     public Integer columnsCount;
+    public static TableView tableView;
 
     @FXML
     public ComboBox<String> comboBoxColumns;
@@ -52,7 +56,9 @@ public class ControllerSettings {
              //     Очищение всех элементов ComboBox & TableView перед последующим заполнением.
              comboBoxColumns.getItems().clear();
              StandardTable.getItems().clear();
-             tableColumnsName.clear();
+             if (tableColumnsName != null && !tableColumnsName.isEmpty()) {
+                  tableColumnsName.clear();
+             }
              columnsCount = 0;
 
             switch (clickedButton.getText()) {
@@ -84,10 +90,13 @@ public class ControllerSettings {
 
              StandardTable.setItems(DataBasePart.table);
 
-             TableView tableView = DataBasePart.tableView;
+             tableView = DataBasePart.tableView;
              //StandardTable = tableView;
              columnsCount = tableView.getColumns().size();
-             tableColumnsName.addAll(tableView.getColumns());
+             //  tableColumnsName = new ArrayList<String>(tableView.getColumns());
+                 tableColumnsName = tableView.getColumns().stream()
+                         .map(TableColumn::getText)
+                         .collect(Collectors.toCollection(ArrayList::new));
 
             int tableIndex = StandardHBox.getChildren().indexOf(StandardTable);
             StandardHBox.getChildren().set(tableIndex, tableView);
@@ -105,26 +114,37 @@ public class ControllerSettings {
     protected void onAddButtonClicked(ActionEvent event) throws SQLException {
     String columnName = comboBoxColumns.getValue();
     String addInformation = textField.getText();
-    if (columnName.isEmpty()){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please, choose the column name.");
+        Alert alert;
+    if (columnName == null || columnName.isEmpty()){
+        alert = new Alert(Alert.AlertType.INFORMATION, "Please, choose the column name.");
         alert.showAndWait();
     } else if(addInformation.isEmpty()){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please, write an information to add.");
+        alert = new Alert(Alert.AlertType.INFORMATION, "Please, write an information to add.");
         alert.showAndWait();
     } else if (tableColumnsName.isEmpty() || columnsCount == 0){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please, choose the table.");
+        alert = new Alert(Alert.AlertType.INFORMATION, "Please, choose the table.");
         alert.showAndWait();
     } else {
         DataBasePart.setConnection(tableName);
-        String sqlCommandInsert = "INSERT INTO trying." + tableName + "(" + columnName + ")"
-                + " " + "VALUES" + " " + "(" + addInformation + ")";
+
+        StringBuilder columnNamesForCommand = new StringBuilder();
+        StringBuilder addInformationForCommand = new StringBuilder();
         for (int i = 0; i < columnsCount; i++){
             if (columnName.equals(tableColumnsName.get(i))){
-
+                columnNamesForCommand.append(tableColumnsName.get(i));
+                addInformationForCommand.append(addInformation);
             } else {
-
+                columnNamesForCommand.append(tableColumnsName.get(i));
+                addInformationForCommand.append("—");
+               }
+            if (i + 1 != columnsCount){
+                columnNamesForCommand.append(", ");
+                addInformationForCommand.append(", ");
             }
         }
+        String sqlCommandInsert = "INSERT INTO trying." + tableName + "(" + columnNamesForCommand.toString() + ")"
+                + " " + "VALUES" + " " + "(" + addInformationForCommand.toString() + ")";
+        DataBasePart.workWithTable(sqlCommandInsert, tableName);
     }
 
 
