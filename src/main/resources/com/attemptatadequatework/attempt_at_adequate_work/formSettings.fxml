@@ -7,14 +7,15 @@
 <Pane
         maxHeight="-Infinity" maxWidth="-Infinity"
         minHeight="-Infinity" minWidth="-Infinity"
-        prefHeight="300.0" prefWidth="500.0"
+        prefHeight="600.0" prefWidth="900.0"
         xmlns="http://javafx.com/javafx/17.0.12"
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="com.attemptatadequatework.attempt_at_adequate_work.ControllerSettings"
         fx:id="mainPane">
 
    <children>
-      <TextField layoutX="167.0" layoutY="14.0" />
+      <TextField layoutX="167.0" layoutY="14.0"
+                 fx:id="textField"/>
 
       <ComboBox layoutX="336.0" layoutY="14.0"
                 prefWidth="150.0"
@@ -22,6 +23,7 @@
 
       <Button layoutX="113.0" layoutY="14.0"
               mnemonicParsing="false" text="add"
+              onAction="#onAddButtonClicked"
                fx:id="addButton" />
 
       <HBox layoutX="10.0" layoutY="56.0"

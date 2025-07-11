@@ -16,6 +16,8 @@ import java.sql.*;
     Класс, предназначенный для работы с базой данной (MySQL).
 
     Методы:
+            setConnection(tableName) — подключается к таблице tableName в схеме trying, находящейся в БД.
+                        принимает String tableName — название таблицы для отображения.
             table_view(tableName) — создаёт таблицу TableView через javafx.
                         принимает String tableName — название таблицы для отображения.
  */
@@ -34,16 +36,24 @@ public class DataBasePart {
     public static TableView tableView;
     public static ObservableList<String> tableColumnsNames =
             FXCollections.observableArrayList();
+
+    /*
+        Подключение к таблице tableName.
+     */
+    public static void setConnection(String tableName) throws SQLException {
+        String sqlCommand = "SELECT * FROM trying." + tableName;
+        connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery(sqlCommand);
+    }
     /*
         Динамическое создание таблицы с базы данных в отображаемую через javafx таблицу.
      */
     public static void table_view(String tableName) throws SQLException {
 
-        String sqlCommand = "SELECT * FROM trying." + tableName;
+        setConnection(tableName);
         try {
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sqlCommand);
+
             tableView = new TableView();
 
             for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
